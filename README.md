@@ -48,7 +48,7 @@ Accede a la aplicación desde cualquier dispositivo:
 Clona el repositorio:
 
 ```bash
-git clone https://github.com/tuusuario/calculo-palos-streamlit.git
+git clone https://github.com/dilsong/calculo-palos-streamlit.git
 cd calculo-palos-streamlit
 
 Instala dependencias:

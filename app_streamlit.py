@@ -62,11 +62,11 @@ if tmcs == l:
 
     st.success("Caso aplicado: **tmcs = l**")
 
-    st.metric("Palos para ventana", cand_csjv)
-    st.metric("Tamaño ventana", f"{size_csjv} mm")
-    st.metric("Palos a cortar (ventana)", tp_csjv)
+    st.metric("Palos para las dos ventanas", cand_csjv)
+    st.metric("Tamaño de corte ventana", f"{size_csjv} mm")
+    st.metric("Palos tamano original para cortar (ventana)", tp_csjv)
     st.metric("Palos para yugo", "0 (tamaño original)")
-    st.metric("Palos enteros necesarios", tp_entero_py)
+    st.metric("Palos enteros necesarios para todo el Proyecto (Cortar-Pegar)", tp_entero_py)
 
 elif ((l - w) + r) == tmcs:
     size_csjv = w
