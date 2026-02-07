@@ -19,7 +19,6 @@ st.subheader("🔧 Parámetros de entrada")
 w = validar(st.number_input("Tamaño de la Hoja (w)", min_value=1.0, step=1.0), "w")
 v = validar(st.number_input("Tamaño de la Ventana (v)", min_value=1.0, step=1.0), "v")
 l = validar(st.number_input("Largo de la Pierna (l)", min_value=1.0, step=1.0), "l")
-tmcs = validar(st.number_input("Tamaño del cool stree (tmcs)", min_value=1.0, step=1.0), "tmcs")
 
 st.write("---")
 
@@ -31,6 +30,17 @@ if mantener == "Cambiar valor":
     r = validar(st.number_input("Nuevo valor del ruler (r)", min_value=1.0, step=1.0), "r")
 else:
     r = r_default
+
+st.write("---")
+
+# Cool stree
+cs_default = 2790
+mantener = st.radio("Tamaño del cool stree", ["Mantener 2790 mm", "Cambiar valor"])
+
+if mantener == "Cambiar valor":
+    tmcs = validar(st.number_input("Nuevo valor del cool stree (tmcs)", min_value=1.0, step=1.0), "tmcs")
+else:
+    tmcs = cs_default
 
 st.write("---")
 
