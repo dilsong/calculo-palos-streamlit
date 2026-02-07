@@ -51,24 +51,27 @@ cand_csjv = math.ceil((v / r) * 2)
 # --- Procesamiento ---
 st.subheader("📊 Resultados del cálculo")
 
-if tmcs == l:
+# Evaluación de casos
+if tmcs + r == l:
     size_csjv = w
     size_csjp = 0
 
     caven = tmcs / size_csjv
     tp_csjv = math.ceil(cand_csjv / caven)
+    tp_csjp = cand_csjp
 
-    tp_entero_py = cand_csjp + cand_csjv
+    tp_entero_py = tp_csjv + tp_csjp
 
     st.success("Caso aplicado: **tmcs = l**")
 
-    st.metric("Palos para las dos ventanas", cand_csjv)
-    st.metric("Tamaño de corte ventana", f"{size_csjv} mm")
+    st.metric("Palos para Cubrir las dos ventanas", cand_csjv)
+    st.metric("Tamaño de corte ventana por C/U", f"{size_csjv} mm")
     st.metric("Palos tamano original para cortar (ventana)", tp_csjv)
     st.metric("Palos para yugo", "0 (tamaño original)")
+    st.metric("Palos tamano original para piernas", tp_csjp)
     st.metric("Palos enteros necesarios para todo el Proyecto (Cortar-Pegar)", tp_entero_py)
 
-elif ((l - w) + r) == tmcs:
+elif (tmcs + w + r) == l:
     size_csjv = w
     size_csjp = w
 
@@ -90,7 +93,7 @@ elif ((l - w) + r) == tmcs:
 
     st.metric("Palos enteros necesarios", tp_entero_py)
 
-elif ((l - w) + r) > tmcs:
+elif (tmcs + w + r) < l:
     size_csjv = w
     size_csjp = l - (tmcs + r)
 
