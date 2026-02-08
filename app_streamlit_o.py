@@ -12,53 +12,6 @@ def validar(valor, nombre):
         st.error(f"❌ El valor de **{nombre}** debe ser mayor que 0.")
         st.stop()
     return valor
-# --- Boton Ws ---
-def boton_whatsapp(texto, numero="584141234567"):
-    mensaje = urllib.parse.quote(texto)
-    url = f"https://wa.me/{numero}?text={mensaje}"
-
-    st.markdown(
-        f"""
-        <a href="{url}" target="_blank" style="
-            text-decoration: none;
-            background-color: #25D366;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        ">
-            📲 Enviar por WhatsApp
-        </a>
-        """,
-        unsafe_allow_html=True
-    )
-# --- Reporte WS ---
-import urllib.parse
-
-def generar_texto_reporte(caso, cand_csjv, size_csjv, tp_csjv, 
-                          cand_csjp, size_csjp, tp_csjp, tp_entero_py):
-
-    texto = f"""
-📌 *Reporte del Proyecto*
-Caso aplicado: {caso}
-
-🪟 *Ventanas*
-• Palos necesarios: {cand_csjv}
-• Tamaño por C/U: {size_csjv} mm
-• Palos originales: {tp_csjv}
-
-🦵 *Yugo (3 piernas)*
-• Palos necesarios: {cand_csjp}
-• Tamaño por C/U: {size_csjp} mm
-• Palos originales: {tp_csjp}
-
-📦 *Total del Proyecto*
-Palos enteros necesarios: {tp_entero_py}
-"""
-    return texto
 # --- Funcion Mostrar Resultados ---
 def mostrar_resultados(caso, cand_csjv, size_csjv, tp_csjv, cand_csjp, size_csjp, tp_csjp, tp_entero_py):
     st.success(f"Caso aplicado: **{caso}**")
@@ -90,15 +43,6 @@ def mostrar_resultados(caso, cand_csjv, size_csjv, tp_csjv, cand_csjp, size_csjp
         st.subheader("Total del Proyecto")
         st.metric("Palos enteros necesarios (Cortar-Pegar)", tp_entero_py)
 
-    # Generar Text reporte de WhatsApp
-    texto = generar_texto_reporte(
-        caso, cand_csjv, size_csjv, tp_csjv,
-        cand_csjp, size_csjp, tp_csjp,
-        tp_entero_py
-    )
-
-    st.write("### Enviar reporte")
-    boton_whatsapp(texto)
 
 # --- Entradas ---
 st.subheader("🔧 Parámetros de entrada")
