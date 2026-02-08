@@ -1,5 +1,7 @@
 import streamlit as st
 import math
+import json
+
 
 st.set_page_config(page_title="Cálculo de Palos", layout="centered")
 
@@ -14,10 +16,13 @@ def validar(valor, nombre):
     return valor
 # --- Boton copiar reporte WhatsApp ---
 def boton_copiar_reporte(texto):
-    st.markdown(
-        f"""
-        <button onclick="navigator.clipboard.writeText(`{texto}`)"
-        style="
+
+    texto_js = json.dumps(texto)
+
+    st.markdown(f"""
+        <textarea id="reporte_oculto" style="position:absolute; left:-9999px; top:-9999px;">{texto}</textarea>
+
+        <button id="btn_copiar_reporte" style="
             background-color:#4CAF50;
             color:white;
             padding:10px 18px;
@@ -29,12 +34,27 @@ def boton_copiar_reporte(texto):
             display:flex;
             align-items:center;
             gap:8px;
+            transition:0.2s;
         ">
         📄 Copiar reporte
         </button>
-        """,
-        unsafe_allow_html=True
-    )
+
+        <script>
+        const boton = document.getElementById("btn_copiar_reporte");
+        boton.addEventListener("click", () => {{
+            const area = document.getElementById("reporte_oculto");
+            area.select();
+            document.execCommand("copy");
+
+            boton.style.backgroundColor = "#2E7D32";
+            boton.innerText = "✔ Copiado";
+            setTimeout(() => {{
+                boton.style.backgroundColor = "#4CAF50";
+                boton.innerText = "📄 Copiar reporte";
+            }}, 1500);
+        }});
+        </script>
+    """, unsafe_allow_html=True)
 
 # --- Generar Reporte WS ---
 import urllib.parse
@@ -99,8 +119,9 @@ def mostrar_resultados(caso, cand_csjv, size_csjv, tp_csjv, cand_csjp, size_csjp
         tp_entero_py
     )
 
-    st.write("### Copiar reporte para enviar por WhatsApp")
-    boton_copiar_reporte(texto)
+    st.write("### Copiar reporte")
+    st.code(texto, language="markdown")
+
 
 
 # --- Entradas ---
