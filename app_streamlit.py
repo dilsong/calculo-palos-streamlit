@@ -127,29 +127,29 @@ def mostrar_resultados(caso, cand_csjv, size_csjv, tp_csjv, cand_csjp, size_csjp
 # --- Entradas ---
 st.subheader("🔧 Parámetros de entrada")
 
-w = validar(st.number_input("Tamaño de la Hoja (w)", min_value=1.0, step=1.0), "w")
-v = validar(st.number_input("Tamaño de la Ventana (v)", min_value=1.0, step=1.0), "v")
-l = validar(st.number_input("Largo de la Pierna (l)", min_value=1.0, step=1.0), "l")
+w = validar(st.number_input("Tamaño de la Hoja (w)", min_value=100.0, step=1.0), "w")
+v = validar(st.number_input("Tamaño de la Ventana (v)", min_value=100.0, step=1.0), "v")
+l = validar(st.number_input("Largo de la Pierna (l)", min_value=100.0, step=1.0), "l")
 
 st.write("---")
 
 # Ruler
-r_default = 350
-mantener = st.radio("Tamaño del ruler", ["Mantener 350 mm", "Cambiar valor"])
+r_default = 45
+mantener = st.radio("Tamaño del ruler", ["Mantener 45 mm", "Cambiar valor"])
 
 if mantener == "Cambiar valor":
-    r = validar(st.number_input("Nuevo valor del ruler (r)", min_value=1.0, step=1.0), "r")
+    r = validar(st.number_input("Nuevo valor del ruler (r)", min_value=45.0, step=1.0), "r")
 else:
     r = r_default
 
 st.write("---")
 
 # Cool stree
-cs_default = 2790
-mantener = st.radio("Tamaño del cool stree", ["Mantener 2790 mm", "Cambiar valor"])
+cs_default = 2750
+mantener = st.radio("Tamaño del cool stree", ["Mantener 2750 mm", "Cambiar valor"])
 
 if mantener == "Cambiar valor":
-    tmcs = validar(st.number_input("Nuevo valor del cool stree (tmcs)", min_value=1.0, step=1.0), "tmcs")
+    tmcs = validar(st.number_input("Nuevo valor del cool stree (tmcs)", min_value=2750.0, step=1.0), "tmcs")
 else:
     tmcs = cs_default
 
